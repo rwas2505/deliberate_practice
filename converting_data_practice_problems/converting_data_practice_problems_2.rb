@@ -2,98 +2,58 @@
 #     For example, [[1, 3], [8, 9], [2, 16]] becomes {1 => 3, 8 => 9, 2 => 16}.
 
 # arrays = [[1, 3], [8, 9], [2, 16]]
-
-# hash = arrays.to_h
-
-# p hash
-#####################################################################################
+# p hash = arrays.to_h
 
 #  2. Convert an array of hashes into a hash using the :id key from the array's hashes as the keys in the new hash.
 #     For example, [{id: 1, color: "blue", price: 32}, {id: 2, color: "red", price: 12}] becomes {1 => {id: 1, color: "blue", price: 32}, 2 => {id: 2, color: "red", price: 12}}.
 
-# ["foo", "bar"].to_h {|s| [s.ord, s]}
-#   # => {102=>"foo", 98=>"bar"}
-
-  # arr = [{id: 1, color: "blue", price: 32}, {id: 2, color: "red", price: 12}]
-
-  # hash = arr.to_h{|item| [item[:id], item]}
-
-  # #this one omits :id from the value hash since it is the key 
-  # # hash = arr.to_h{|item| [item[:id], item.delete_if{|k,v| k == :id}]}
-
-  # p hash
-
-#####################################################################################
+# arr = [{id: 1, color: "blue", price: 32}, {id: 2, color: "red", price: 12}]
+# p hash = arr.to_h{|item|[item[:id], item]}
 
 #  3. Convert a string into a hash with keys for each letter in the string and values for the number of times the letter appears in the string.
 #     For example, "bookkeeper" becomes {"b" => 1, "o" => 2, "k" => 2, "e" => 3, "p" => 1, "r" => 1}.
 
-# ["foo", "bar"].to_h {|s| [s.ord, s]}
-# #   # => {102=>"foo", 98=>"bar"}
-
 # string = "bookkeeper"
-# array = string.split("")
-# p array
-# p array.to_h{|char| [char, array.count(char)]}
+# arr = string.split("")
+# arr.to_h{|letter|[letter, arr.count(letter)]}
 
-
-#for words:
-
-# words = ["car", "truck", "bike,", "truck", "car", "car"]
-# p counts = words.to_h{|word| [word, words.count(word)]}
-# p max = counts.max_by{|key,value| value}
-# p max[0]
-
-
-#####################################################################################
-
- 
 #  4. Convert a hash into an array of arrays.
 #     For example, {"chair" => 100, "book" => 14} becomes [["chair", 100], ["book", 14]].
 
 # hash = {"chair" => 100, "book" => 14}
-
-# p array = hash.to_a
-
-#####################################################################################
+# p arr = hash.to_a
 
 #  5. Convert a hash into an array of hashes using the keys from each hash as the :id key in each of the array's hashes.
 #     For example, {321 => {name: "Alice", age: 31}, 322 => {name: "Maria", age: 27}} becomes [{id: 321, name: "Alice", age: 31}, {id: 322, name: "Maria", age: 27}].
 
-
-# people = {321 => {name: "Alice", age: 31}, 322 => {name: "Maria", age: 27}}
-# people_array = []
-# people.each{|id, person|
+# hash = {321 => {name: "Alice", age: 31}, 322 => {name: "Maria", age: 27}}
+# arr = []
+# hash.each{|id,person|
 #   person[:id] = id
-#   people_array << person
+#   arr << person
 # }
-# p people_array
+# p arr
 
-#####################################################################################
+#without having to declare an empty array!
+
+# hash = {321 => {name: "Alice", age: 31}, 322 => {name: "Maria", age: 27}}
+# arr = hash.map{|id,person| person[:id] = id; person}
+# p arr
 
 #  6. Convert an array of strings into a hash with keys for each string in the array and values for the number of times the string appears in the array.
 #     For example, ["do", "or", "do", "not"] becomes {"do" => 2, "or" => 1, "not" => 1}.
 
-#####################################################################################
-
 #  7. Convert a hash into a flat array containing all the hash’s keys and values.
 #     For example, {"a" => 1, "b" => 2, "c" => 3, "d" => 4} becomes ["a", 1, "b", 2, "c", 3, "d", 4].
-
-#####################################################################################
 
 #  8. Combine data from a hash with names and prices and an array of hashes with names, colors, and weights to make a new hash.
 #     For example, {"chair" => 75, "book" => 15} and [{name: "chair", color: "red", weight: 10}, {name: "book", color: "black", weight: 1}] becomes {"chair" => {price: 75, color: "red", weight: 10}, "book" => {price: 15, color: "black", weight: 1}}.
 
-#####################################################################################
-
 #  9. Convert an array of hashes into a hash of arrays, using the author as keys and the titles as values.
 #     For example, [{author: "Jeff Smith", title: "Bone"}, {author: "George Orwell", title: "1984"}, {author: "Jeff Smith", title: "RASL"}] becomes {"Jeff Smith" => ["Bone", "RASL"], "George Orwell" => ["1984"]}.
-
-#####################################################################################
 
 # 10. Given a hash, create a new hash that has the keys and values switched.
 #     For example, {"a" => 1, "b" => 2, "c" => 3} becomes {1 => "a", 2 => "b", 3 => "c"}.
 
-#####################################################################################
 
 # SOLUTIONS: https://gist.github.com/peterxjang/216a7a6e8411ee5c05118e78022f2bc7
